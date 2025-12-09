@@ -1,4 +1,8 @@
 <?php
-exec('mosquitto_pub -h localhost -t esp32/oled -m "Bonjour ESP32 !"');
+$vm_ip = '172.16.117.129';
+$topic = 'esp32/oled';
+$message = 'Bonjour ESP32 depuis PC !';
+
+exec("mosquitto_pub -h $vm_ip -t $topic -m \"$message\"");
 echo "Message envoyé\n";
 ?>
