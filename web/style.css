@@ -4,7 +4,6 @@ body{
 }
 .block {
     cursor: move;
-    background: #f8f9fa;
 }
 body {
     background-image: url("media/bisig.png");

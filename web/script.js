@@ -4,7 +4,7 @@ function addBlock(type) {
     const blocks = document.getElementById('blocks');
     const div = document.createElement('div');
 
-    div.className = 'block border rounded p-2 mb-2 ' + type;
+    div.className = 'card ' + type;
     div.dataset.type = type;
     div.draggable = true;
 
@@ -21,12 +21,25 @@ function addBlock(type) {
             <input type="number" class="form-control" min="0" max="180">
         `;
     }
-
+    
     if (type === 'son') {
         field = `
-            <label>Son</label>
-            <input type="text" class="form-control" placeholder="bip, melody1">
-        `;
+            <div class="card-body">
+                <label class="form-label">Fichier audio</label>
+                <select class="form-select mb-3">
+                    <option disabled selected>Choisir un fichier</option>`;
+        for (let i = 0; i < fichiers.length; i++) {
+            field += `<option value="${fichiers[i]}">${fichiers[i]}</option>`;
+        }
+        field += `
+                </select>
+                <div class="d-flex align-items-center gap-3">
+                    <label class="form-label mb-0">Volume</label>
+                    <input type="range" class="form-range flex-grow-1" min="0" max="100" value="50" oninput="this.nextElementSibling.textContent = this.value">
+                    <span class="fw-bold">50</span>
+                </div>
+            </div>`;
+        console.log(fichiers);
     }
 
     if (type === 'message') {
@@ -44,7 +57,7 @@ function addBlock(type) {
     }
 
     div.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="d-flex card-header justify-content-between align-items-center">
             <strong>${type.toUpperCase()}</strong>
             <button type="button" class="btn btn-lg" onclick="removeBlock(this)"><i class="bi bi-x-lg"></i></button>
         </div>
@@ -86,8 +99,7 @@ function dragEnd() {
     this.classList.remove("opacity-50");
     dragged = null;
 }
-
-document.getElementById('choreoForm').addEventListener('submit', function () {
+document.getElementById('choregraphie').addEventListener('submit', function () {
     const blocks = document.querySelectorAll('.block');
     let sequence = [];
 
