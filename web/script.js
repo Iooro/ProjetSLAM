@@ -4,7 +4,7 @@ function addBlock(type) {
     const blocks = document.getElementById('blocks');
     const div = document.createElement('div');
 
-    div.className = 'block border rounded p-2 mb-2';
+    div.className = 'block border rounded p-2 mb-2 ' + type;
     div.dataset.type = type;
     div.draggable = true;
 
@@ -15,31 +15,38 @@ function addBlock(type) {
 
     let field = '';
 
-    if (type === 'movement') {
+    if (type === 'mouvement') {
         field = `
             <label>Angle servo (°)</label>
             <input type="number" class="form-control" min="0" max="180">
         `;
     }
 
-    if (type === 'sound') {
+    if (type === 'son') {
         field = `
             <label>Son</label>
             <input type="text" class="form-control" placeholder="bip, melody1">
         `;
     }
 
-    if (type === 'text') {
+    if (type === 'message') {
         field = `
-            <label>Texte à afficher</label>
+            <label>Message à afficher</label>
             <input type="text" class="form-control" maxlength="32">
+        `;
+    }
+
+    if (type === 'pause') {
+        field = `
+            <label>Message à afficher</label>
+            <input type="text" class="form-control" maxlength="32"> 
         `;
     }
 
     div.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-2">
             <strong>${type.toUpperCase()}</strong>
-            <button type="button" class="btn btn-sm btn-danger" onclick="removeBlock(this)">❌</button>
+            <button type="button" class="btn btn-lg" onclick="removeBlock(this)"><i class="bi bi-x-lg"></i></button>
         </div>
         ${field}
     `;

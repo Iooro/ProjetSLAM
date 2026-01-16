@@ -1,7 +1,26 @@
 body{
     background-color: #fbf4f1;
+    margin: 10px;
 }
 .block {
     cursor: move;
     background: #f8f9fa;
+}
+body {
+    background-image: url("media/bisig.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.mouvement{
+    border-left: 7px solid #0d6efd !important;
+}
+.son{
+    border-left: 7px solid #ffc107 !important;
+}
+.message{
+    border-left: 7px solid #198754 !important;
+}
+.pause{
+    border-left: 7px solid #6c757d !important;
 }
