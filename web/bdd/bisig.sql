@@ -31,16 +31,16 @@ CREATE TABLE `mouvement` (
   `priorité` int(11) NOT NULL,
   `angle` int(11) NOT NULL,
   `duree` int(11) NOT NULL,
-  `id_notification` int(11) NOT NULL
+  `id_choregraphie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `notification`
+-- Structure de la table `choregraphie`
 --
 
-CREATE TABLE `notification` (
+CREATE TABLE `choregraphie` (
   `id` int(11) NOT NULL,
   `application` varchar(65) NOT NULL,
   `text` text DEFAULT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE `son` (
   `id` int(11) NOT NULL,
   `nom` varchar(65) NOT NULL,
   `chemin` varchar(535) NOT NULL,
-  `id_notification` int(11) NOT NULL
+  `id_choregraphie` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -68,12 +68,12 @@ CREATE TABLE `son` (
 -- Index pour la table `mouvement`
 --
 ALTER TABLE `mouvement`
-  ADD KEY `id_notification` (`id_notification`);
+  ADD KEY `id_choregraphie` (`id_choregraphie`);
 
 --
--- Index pour la table `notification`
+-- Index pour la table `choregraphie`
 --
-ALTER TABLE `notification`
+ALTER TABLE `choregraphie`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -81,16 +81,16 @@ ALTER TABLE `notification`
 --
 ALTER TABLE `son`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_notification` (`id_notification`);
+  ADD KEY `id_choregraphie` (`id_choregraphie`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT pour la table `notification`
+-- AUTO_INCREMENT pour la table `choregraphie`
 --
-ALTER TABLE `notification`
+ALTER TABLE `choregraphie`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -107,13 +107,13 @@ ALTER TABLE `son`
 -- Contraintes pour la table `mouvement`
 --
 ALTER TABLE `mouvement`
-  ADD CONSTRAINT `mouvement_ibfk_1` FOREIGN KEY (`id_notification`) REFERENCES `notification` (`id`);
+  ADD CONSTRAINT `mouvement_ibfk_1` FOREIGN KEY (`id_choregraphie`) REFERENCES `choregraphie` (`id`);
 
 --
 -- Contraintes pour la table `son`
 --
 ALTER TABLE `son`
-  ADD CONSTRAINT `son_ibfk_1` FOREIGN KEY (`id_notification`) REFERENCES `notification` (`id`);
+  ADD CONSTRAINT `son_ibfk_1` FOREIGN KEY (`id_choregraphie`) REFERENCES `choregraphie` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
